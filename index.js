@@ -38,14 +38,14 @@ const getSourceList = smc => {
   if (!program.includeNodeModules) {
     sources = sources.filter(([filePath]) => !filePath.startsWith('~/'));
   }
-  
+
   return sources;
 }
 
 const trimFooter = str => str.substr(0, str.indexOf(WEBPACK_FOOTER)).trimRight() + '\n';
 
 const saveSourceContent = (smc, filePath, src) => {
-  const content = trimFooter(smc.sourceContentFor(src));
+  const content = smc.sourceContentFor(src)
   const outPath = path.join(program.outDir, filePath);
   const dir = path.dirname(outPath);
 
@@ -70,7 +70,7 @@ function processFile(filename) {
   const json = readJson(filename);
 
   const smc = new SourceMapConsumer(json);
-  
+
   const sources = getSourceList(smc);
 
   sources.forEach(([filePath, src]) => saveSourceContent(smc, filePath, src));
