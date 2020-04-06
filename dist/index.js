@@ -69,6 +69,10 @@ var trimFooter = function trimFooter(str) {
 
 var saveSourceContent = function saveSourceContent(smc, filePath, src) {
   var content = smc.sourceContentFor(src);
+  if (filePath.indexOf('?') > 0){
+    var endPoint = filePath.indexOf('?');
+    filePath = filePath.substr(0, endPoint);
+  }
   var outPath = _path2.default.join(program.outDir, filePath);
   var dir = _path2.default.dirname(outPath);
 
