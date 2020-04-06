@@ -46,7 +46,6 @@ const trimFooter = str => str.substr(0, str.indexOf(WEBPACK_FOOTER)).trimRight()
 
 const saveSourceContent = (smc, filePath, src) => {
   const content = smc.sourceContentFor(src)
-  //the filePath may contains "?...." 
   if (filePath.indexOf('?') > 0){
     var endPoint=filePath.indexOf('?');
     filePath = filePath.substr(0, endPoint);
